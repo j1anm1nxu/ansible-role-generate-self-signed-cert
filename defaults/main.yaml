@@ -5,17 +5,16 @@ use_intermediate_cert: yes
 root_cert_bit: 4096
 intermediate_cert_bit: 4096
 server_cert_bit: 2048
-cert_base_dir: /root/cert_base
+cert_base_dir: "{{playbook_dir}}/cert_base"
 serial_number: 1000
 
-countryName: CA
-stateOrProvinceName: ON
-localityName: MILTON
-organizationName: REDHAT
-organizationalUnitName: SCE
-emailAddress: test@test.com
+countryName: US
+stateOrProvinceName: TX
+localityName: Frisco
+organizationName: Cisco
+organizationalUnitName: Networking
+emailAddress: jiaxu@cisco.com
 
-root_commonName: Root CA
-intermediate_commonName: Intermediate CA
-cert_commonName: lb.example.com
-
+root_commonName: acmpcaroot
+intermediate_commonName: acmpcasubordinate
+cert_commonName: druid

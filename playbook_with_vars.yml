@@ -1,0 +1,20 @@
+---
+- name: ansible-role-generate-self-signed-cert
+  hosts: localhost
+  gather_facts: yes #no
+
+  vars:
+    druid_host_vpc: 15
+    druid_host_subnet: 12
+    druid_host_instance: 95
+
+  tasks:
+    - include_role:
+        name: "../ansible-role-generate-self-signed-cert"
+      vars:
+        cert_commonName: "*.dev.tortuga.systems"
+        san_dns:
+          - { index: 1, dns: "ip-10-{{druid_host_vpc}}-{{druid_host_subnet}}-{{druid_host_instance}}.ec2.internal"}
+          - { index: 2, dns: "ip-10-{{druid_host_vpc}}-{{druid_host_subnet}}-{{druid_host_instance}}.dev.tortuga.systems"}
+        san_ip:
+          - { index: 1, ip: "10.{{druid_host_vpc}}.{{druid_host_subnet}}.{{druid_host_instance}}"}
